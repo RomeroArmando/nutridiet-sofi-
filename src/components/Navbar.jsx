@@ -10,7 +10,6 @@ export const Navbar = ({ cartCount, toggleCart, setView, view }) => {
     setIsMenuOpen(false);
   };
 
-  // Estilos para la versión de escritorio
   const getDesktopLinkStyle = (targetView) => ({
     color: view === targetView ? '#4A7A25' : '#0B0B0B',
     fontWeight: 'bold',
@@ -22,95 +21,121 @@ export const Navbar = ({ cartCount, toggleCart, setView, view }) => {
 
   return (
     <nav className="navbar sticky-top shadow-sm" style={{ backgroundColor: '#F5F3EB', padding: '12px 0' }}>
-      <div className="container d-flex justify-content-between align-items-center position-relative">
+      <div className="container d-flex justify-content-between align-items-center">
 
-        {/* 1. IZQUIERDA (Solo Móvil): Botón menú hamburguesa personalizado */}
-        <button 
-          className="btn d-lg-none p-1 border-0 shadow-none" 
-          onClick={() => setIsMenuOpen(true)}
-          style={{ color: '#4A7A25' }}
-        >
-          <FaBars size={26} />
-        </button>
-
-        {/* 2. CENTRO (Móvil) / IZQUIERDA (Desktop): Logo */}
-        <a 
-          className="navbar-brand d-flex align-items-center m-0 position-lg-static position-absolute start-50 translate-middle-x translate-lg-middle-none" 
-          href="#" 
-          onClick={(e) => { e.preventDefault(); handleNavClick('home'); }}
-          style={{ cursor: 'pointer' }}
-        >
-          <img 
-            src="/img/LOGO.jpeg" 
-            alt="NutriDiet Logo" 
-            className="shadow-sm"
-            style={{ width: '45px', height: '45px', borderRadius: '50%', marginRight: '10px', border: '2px solid #4A7A25' }} 
-            onError={(e) => e.target.style.display = 'none'}
-          />
-          {/* Ocultamos el texto en pantallas muy chicas para que respire mejor el diseño */}
-          <span className="d-none d-sm-block" style={{ color: '#4A7A25', fontWeight: '900', fontSize: '1.5rem', letterSpacing: '0.5px' }}>
-            NutriDiet
-          </span>
-        </a>
-
-        {/* 3. CENTRO (Solo Desktop): Enlaces de navegación */}
-        <div className="d-none d-lg-flex align-items-center gap-4 position-absolute start-50 translate-middle-x">
+        {/* --- 1. COLUMNA IZQUIERDA --- */}
+        <div className="d-flex align-items-center" style={{ minWidth: '100px' }}>
+          {/* Botón menú hamburguesa (Solo Móvil) */}
           <button 
-            className="btn btn-link d-inline-flex align-items-center gap-2 px-0" 
-            style={getDesktopLinkStyle('home')}
-            onClick={() => handleNavClick('home')}
+            className="btn d-lg-none p-1 border-0 shadow-none" 
+            onClick={() => setIsMenuOpen(true)}
+            style={{ color: '#4A7A25' }}
           >
-            <FaStore /> Productos
+            <FaBars size={26} />
           </button>
-          <button 
-            className="btn btn-link d-inline-flex align-items-center gap-2 px-0" 
-            style={getDesktopLinkStyle('about')}
-            onClick={() => handleNavClick('about')}
+
+          {/* Logo (Solo Desktop) */}
+          <a 
+            className="navbar-brand d-none d-lg-flex align-items-center m-0" 
+            href="#" 
+            onClick={(e) => { e.preventDefault(); handleNavClick('home'); }}
+            style={{ cursor: 'pointer' }}
           >
-            <FaInfoCircle /> Quiénes Somos
-          </button>
+            <img 
+              src="/img/LOGO.jpeg" 
+              alt="NutriDiet Logo" 
+              className="shadow-sm"
+              style={{ width: '45px', height: '45px', borderRadius: '50%', marginRight: '10px', border: '2px solid #4A7A25' }} 
+              onError={(e) => e.target.style.display = 'none'}
+            />
+            <span style={{ color: '#4A7A25', fontWeight: '900', fontSize: '1.5rem', letterSpacing: '0.5px' }}>
+              NutriDiet
+            </span>
+          </a>
         </div>
 
-        {/* 4. DERECHA (Móvil y Desktop): Botón del Carrito */}
-        <button 
-          className="btn position-relative rounded-circle d-flex align-items-center justify-content-center shadow-sm" 
-          onClick={() => {
-            toggleCart();
-            setIsMenuOpen(false);
-          }}
-          style={{ 
-            backgroundColor: '#FFFFFF', 
-            color: '#4A7A25', 
-            border: '1px solid #4A7A25',
-            width: '50px',
-            height: '50px',
-            transition: 'transform 0.2s ease',
-            zIndex: 10
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-          onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-        >
-          <FaShoppingCart size={22} />
-          {cartCount > 0 && (
-            <span 
-              className="position-absolute translate-middle badge rounded-pill shadow-sm" 
-              style={{ backgroundColor: '#9E5B26', top: '8px', left: '42px', fontSize: '0.8rem', border: '2px solid #F5F3EB' }}
-            >
-              {cartCount}
+
+        {/* --- 2. COLUMNA CENTRAL --- */}
+        <div className="d-flex justify-content-center align-items-center flex-grow-1">
+          {/* Logo centrado (Solo Móvil) */}
+          <a 
+            className="navbar-brand d-flex d-lg-none align-items-center m-0" 
+            href="#" 
+            onClick={(e) => { e.preventDefault(); handleNavClick('home'); }}
+            style={{ cursor: 'pointer' }}
+          >
+            <img 
+              src="/img/LOGO.jpeg" 
+              alt="NutriDiet Logo" 
+              className="shadow-sm"
+              style={{ width: '45px', height: '45px', borderRadius: '50%', marginRight: '10px', border: '2px solid #4A7A25' }} 
+              onError={(e) => e.target.style.display = 'none'}
+            />
+            <span className="d-none d-sm-block" style={{ color: '#4A7A25', fontWeight: '900', fontSize: '1.5rem', letterSpacing: '0.5px' }}>
+              NutriDiet
             </span>
-          )}
-        </button>
+          </a>
+
+          {/* Enlaces de navegación (Solo Desktop) */}
+          <div className="d-none d-lg-flex align-items-center gap-4">
+            <button 
+              className="btn btn-link d-inline-flex align-items-center gap-2 px-0 m-0" 
+              style={getDesktopLinkStyle('home')}
+              onClick={() => handleNavClick('home')}
+            >
+              <FaStore /> Productos
+            </button>
+            <button 
+              className="btn btn-link d-inline-flex align-items-center gap-2 px-0 m-0" 
+              style={getDesktopLinkStyle('about')}
+              onClick={() => handleNavClick('about')}
+            >
+              <FaInfoCircle /> Quiénes Somos
+            </button>
+          </div>
+        </div>
+
+
+        {/* --- 3. COLUMNA DERECHA --- */}
+        <div className="d-flex justify-content-end align-items-center" style={{ minWidth: '100px' }}>
+          {/* Botón del Carrito (Móvil y Desktop) */}
+          <button 
+            className="btn position-relative rounded-circle d-flex align-items-center justify-content-center shadow-sm" 
+            onClick={() => {
+              toggleCart();
+              setIsMenuOpen(false);
+            }}
+            style={{ 
+              backgroundColor: '#FFFFFF', 
+              color: '#4A7A25', 
+              border: '1px solid #4A7A25',
+              width: '50px',
+              height: '50px',
+              transition: 'transform 0.2s ease'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+          >
+            <FaShoppingCart size={22} />
+            {cartCount > 0 && (
+              <span 
+                className="position-absolute translate-middle badge rounded-pill shadow-sm" 
+                style={{ backgroundColor: '#9E5B26', top: '8px', left: '42px', fontSize: '0.8rem', border: '2px solid #F5F3EB' }}
+              >
+                {cartCount}
+              </span>
+            )}
+          </button>
+        </div>
 
       </div>
 
       {/* --- ESTRUCTURA DEL MENÚ LATERAL (OFFCANVAS) PARA MÓVILES --- */}
       
-      {/* Fondo oscuro al abrir el menú */}
       {isMenuOpen && (
         <div className="offcanvas-backdrop fade show d-lg-none" onClick={() => setIsMenuOpen(false)}></div>
       )}
 
-      {/* Panel lateral */}
       <div 
         className={`offcanvas offcanvas-start d-lg-none ${isMenuOpen ? 'show' : ''}`} 
         tabIndex="-1" 
@@ -134,7 +159,6 @@ export const Navbar = ({ cartCount, toggleCart, setView, view }) => {
         
         <div className="offcanvas-body px-4 mt-2">
           <div className="d-flex flex-column gap-3">
-            {/* Botón Inicio Móvil */}
             <button 
               className="btn d-flex align-items-center gap-3 p-3 rounded-4 w-100" 
               style={{ 
@@ -150,7 +174,6 @@ export const Navbar = ({ cartCount, toggleCart, setView, view }) => {
               <FaStore size={20} /> Productos
             </button>
             
-            {/* Botón Quiénes Somos Móvil */}
             <button 
               className="btn d-flex align-items-center gap-3 p-3 rounded-4 w-100" 
               style={{ 
@@ -172,7 +195,6 @@ export const Navbar = ({ cartCount, toggleCart, setView, view }) => {
           <p className="text-muted small mb-0 fw-bold" style={{ color: '#9E5B26' }}>Comé sano. Viví mejor.</p>
         </div>
       </div>
-
     </nav>
   );
 };
