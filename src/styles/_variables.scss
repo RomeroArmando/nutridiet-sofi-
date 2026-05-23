@@ -1,0 +1,12 @@
+// src/styles/_variables.scss
+
+$color-cream: #F5F3EB;  // Fondo del círculo central
+$color-green: #4A7A25;  // Verde de la tipografía y hojas
+$color-brown: #9E5B26;  // Marrón de las almendras/nueces
+$color-black: #0B0B0B;  // Fondo oscuro
+$color-white: #FFFFFF;
+
+// Sobrescribimos algunas variables de Bootstrap si es necesario
+$primary: $color-green;
+$body-bg: $color-cream;
+$body-color: $color-black;

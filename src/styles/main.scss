@@ -1,0 +1,9 @@
+// src/styles/main.scss
+
+@import 'variables';
+@import 'bootstrap/scss/bootstrap';
+
+// Aquí podremos agregar estilos personalizados más adelante
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
